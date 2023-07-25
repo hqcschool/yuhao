@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <div id="box">{{mess}}</div> -->
+    <!-- 
+    <div id="app">
+        <a v-bind:href="url">Google</a>
+        v-bind:href="xxx" 或 简写为 :href="xxx"，xxx同样要写js表达式，且可以直接读取到data中的所有属性。 -->
+    <!-- <a :href="url">Google</a> -->
+    <!-- </div> -->
+
+
+    <div id="app">
+        <input type='text' v-model:value="val">
+    </div>
+</body>
+<script src="./vue.js"></script>
+<script>
+    // new Vue({
+    //     el: "#box",
+    //     data: {
+    //         mess: "Hello Vue."
+    //     }, //给组件设置数据模型,也可以给一个函数或
+    // })
+
+    // new Vue({
+    //     el: "#app",
+    //     data: {
+    //         url: "https://www.baidu.com/",
+    //     },
+    // });
+
+    new Vue({
+        el: "#app",
+        data: {
+            val: "ikun",
+        },
+    });
+</script>
+
+</html>
