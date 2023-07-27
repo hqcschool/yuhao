@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<script src="./vue.js"></script>
+<script src="../yuhao/引入/vue.js"></script>
 <style>
     .calculator {
         display: flex;
@@ -40,16 +40,14 @@
         </input>
         <input type="text" v-model="num2" />
         <input type="button" value="计算" @click="fun" />
-        <br />
-        <div>
-            <p v-if="opt=='+'">结果{{num1+num2}}</p>
-        </div>
+        <br>
+        <p>{{zhi}}</p>
     </div>
 
 
 </body>
 <script>
-    var vm = new Vue({
+    new Vue({
         el: "#app",
         data: {
             num1: 0,
