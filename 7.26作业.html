@@ -34,14 +34,16 @@
 
 <body>
     <div id="app">
-        <input type="text" v-model="num1" />
+        <input type="text" v-model.number="num1" />
         <input type="text" v-model="opt">
 
         </input>
-        <input type="text" v-model="num2" />
-        <input type="button" value="计算" @click="fun" />
+        <input type="text" v-model.number="num2" />
         <br>
-        <p>{{zhi}}</p>
+        <p v-if="opt=='+'">{{num1+num2}}</p>
+        <p v-if="opt=='-'">{{num1-num2}}</p>
+        <p v-if="opt=='*'">{{num1*num2}}</p>
+        <p v-if="opt=='/'">{{num1/num2}}</p>
     </div>
 
 
@@ -53,26 +55,7 @@
             num1: 0,
             num2: 0,
             opt: '',
-            zhi: '',
         },
-        methods: {
-            fun() {
-                switch (this.opt) {
-                    case "+":
-                        this.zhi = Number(this.num1) + Number(this.num2);
-                        break; 	// addition
-                    case "-":
-                        this.zhi = this.num1 - this.num2;
-                        break; 	// additi
-                    case "*":
-                        this.zhi = this.num1 * this.num2;
-                        break; 	// additi
-                    case "/":
-                        this.zhi = this.num1 / this.num2;
-                        break; 	// additi
-                }
-            }
-        }
     });
 
 </script>
