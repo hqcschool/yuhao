@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="../引入/vue.js"></script>
+<style>
+    .bg {
+        width: 200px;
+        height: 300px;
+        background-color: aqua;
+        float: left;
+        margin-left: 10px;
+    }
+
+    .bg2 {
+        width: 200px;
+        height: 300px;
+        background-color: pink;
+        float: left;
+        margin-left: 10px;
+    }
+
+    .font-big {
+        color: red;
+    }
+
+    .size {
+        font-size: 40px;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <div id="bso" :class="bg">{{name}}</div>
+        <div class="bsi" :class="arr">{{name}}</div>
+        <div class="bsi" :class="obj">{{name}}</div>
+        <button @click="changeBg">点击换色</button>
+    </div>
+    <div id="acc">
+        <!-- <div :style="{color: activeColor, fontSize: fontSize + 'px',backgroundColor: bc,
+    height:height + 'px'}">
+            {{name}}
+        </div> -->
+        <!-- <div v-bind:style="styleObject">{{name}}</div> -->
+        <div v-bind:style="[styleObject,asd]">{{name}}</div>
+        <br /><br />
+    </div>
+
+</body>
+<script>
+    var nm = new Vue({
+        el: '#app',
+        data: {
+            name: '撒旦',
+            bg: 'bg',
+            arr: ["bg", "font-big", "size"],
+            obj: {
+                "bg": true,
+                "font-big": false,
+                "size": true,
+            },
+        },
+        methods: {
+            changeBg() {
+                this.bg = this.bg === "bg" ? "bg2" : "bg";
+                let toggleClass =
+                    this.arr[1] == "font-big" ? "bg2" : "font-big";
+                this.arr.splice(1, 1, toggleClass);
+                this.obj["bg"] = !this.obj["bg"];
+                this.obj["bg2"] = !this.obj["bg2"];
+            },
+        },
+    })
+
+
+    const vm = new Vue({
+        el: "#acc",
+        data: {
+            name: "阿瑟东和",
+            styleObject: {
+                color: "green",
+                fontSize: "23px",
+                backgroundColor: "orange",
+                height: "200px"
+            },
+            asd: {
+                color: "red",
+                fontSize: "33px",
+                backgroundColor: "purple",
+                height: "400px"
+            }
+        },
+    });
+</script>
+
+</html>

@@ -9,8 +9,7 @@
 <script src="../yuhao/引入/vue.js"></script>
 <style>
     table {
-        width: 700px;
-        height: 200px;
+        width: 800px;
         border-collapse: collapse;
 
     }
@@ -25,54 +24,63 @@
         width: 300px;
     }
 
+
     button {
         margin-left: 10px;
+
     }
 
     #xiugai {
-        width: 270px;
-        height: 200px;
-        background-color: aqua;
+        margin-bottom: 20px;
     }
-
-    #xiugai input {
-        margin-top: 20px;
-    }
-
-    #xiugai button {
-        margin-top: 20px;
-        margin-left: 30px;
-    }
-
 
     .color-0 {
-        background: green;
+        background: yellow;
+
+    }
+
+    .color-0:hover {
+        background-color: orange;
+    }
+
+    .color-1:hover {
+        background-color: orange;
     }
 
     .color-1 {
-        background: orange;
+        background: pink;
     }
 </style>
 
 <body>
 
     <div id="app">
-        <form action="#" v-if="show" id="xiugai">
+        <form action="#" id="xiugai">
             <div>
                 姓名：<input type="text" name="" id="name" v-model="name">
                 <br>
-                性别：<input type="text" name="" id="sex" v-model="sex">
+                性别： <input type="text" name="" id="sex" v-model="sex">
                 <br>
                 年龄：<input type="text" name="" id="age" v-model="age">
                 <button @click="ti">添加</button>
-                <button @click="quxiao">取消</button>
-                <button @click="gai">修改</button>
+            </div>
+            <div>
+                <select name="" id="">
+                    <option value="">年龄</option>
+                    <option value="">编号</option>
+                </select>
+                <select name="" id="">
+                    <option value="">降序</option>
+                    <option value="">升序</option>
+                </select>
+                <button>排序</button>
             </div>
         </form>
-        <button @click="tian">添加</button>
         <table border="1px">
             <thead>
                 <tr>
+                    <th><input type="checkbox" name="all" id="all">全选</th>
+                    <th>ID</th>
                     <th>姓名</th>
                     <th>性别</th>
                     <th>年龄</th>
@@ -81,13 +89,15 @@
             </thead>
             <tbody>
                 <tr v-for="(item,index) in str" :key="index" :class="'color-' + index % 2">
+                    <td><input type="checkbox" name="" id=""></td>
+                    <td>{{index}}</td>
                     <td>{{item.name}}</td>
                     <td>{{item.sex}}</td>
                     <td>{{item.age}}</td>
                     <td>
                         <button @click=" remove(index)">删除</button>
-                        <button @click="modify(index)">修改</button>
-                        <button @click="cha(index)">查看</button>
+                        <button @click="modify(index)">向上</button>
+                        <button @click="cha(index)">向下</button>
                     </td>
                 </tr>
             </tbody>
@@ -108,21 +118,25 @@
             age: '',
             str: [
                 {
+                    id: "1",
                     name: "张三",
                     sex: "男",
                     age: 18,
                 },
                 {
+                    id: "2",
                     name: "李四",
                     sex: "男",
                     age: 23,
                 },
                 {
+                    id: "3",
                     name: "王五",
                     sex: "女",
                     age: 32,
                 },
                 {
+                    id: "4",
                     name: "赵六",
                     sex: "女",
                     age: 20,
@@ -132,12 +146,7 @@
         },
 
         methods: {
-            tian() {
-                this.show = true;
-            },
-            quxiao() {
-                this.show = false;
-            },
+
             //删除
             remove(index) {
                 this.str.splice(index, 1);
@@ -147,34 +156,31 @@
                 obj = {
                     name: $('#name').val(),
                     sex: $('#sex').val(),
-                    age: $('#age').val()
+                    age: $('#age').val(),
                 }
                 this.str.push(obj);
                 this.show = false;
             },
-            // 回显
             modify(index) {
-                this.show = true;
-                this.index = index
-                this.name = this.str[index].name;
-                this.sex = this.str[index].sex;
-                this.age = this.str[index].age;
+                if (index == 0) {
+                } else {
+                    let arr = this.str;
+                    arr.splice(index - 1, 1, ...arr.splice(index, 1, arr[index - 1]));
+                }
             },
-            //修改
-            gai() {
-                this.str[this.index].name = this.name
-                this.str[this.index].sex = this.sex
-                this.str[this.index].age = this.age
-                this.show = false;
-            },
-            //查看
             cha(index) {
-                this.show = true;
-                this.index = index
-                this.name = this.str[index].name;
-                this.sex = this.str[index].sex;
-                this.age = this.str[index].age;
-            }
+                let arr = this.str;
+                arr.splice(index, 1, ...arr.splice(index + 1, 1, arr[index]))
+            },
+            // 全选
+            // all() {
+            //     for (let item of this.str) {
+            //         item.state = this.alls
+            //     }
+            // },
+            // upall() {
+            //     this.alls = this.str.every(item => item.state);
+            // }
         }
     })
 

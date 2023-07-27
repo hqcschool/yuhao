@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="../引入/vue.js"></script>
+
+<body>
+    <!-- <div id="add"></div> -->
+    <input type="text" name="" id="add" v-model="name">
+</body>
+<script>
+    var nm = new Vue({
+        el: "#add",
+        data: {
+            name: "张三",
+            user: {
+                sex: "男",
+                age: 15
+            }
+        },
+
+        watch: {
+            // name: {
+            //     handler(newValue, oldValue) {
+            //         console.log("改变");
+            //         console.log(newValue, oldValue);
+            //     },
+            //     // immediate: true,
+
+
+            name(newValue, oldValue) {
+                console.log(newValue, oldValue);
+                setTimeout(() => {
+                    this.name = "hello";
+                }, 1000);
+            },
+        }
+
+        // watch: {
+        //     //监听对象的某个属性
+        //     "user.age": function (newValue, oldValue) {
+        //         console.log(newValue, oldValue);
+        //     },
+        // },
+        // deep: true
+    })
+    // nm.$watch("name", {
+    //     handler(oldValue, newValue) {
+    //         console.log("name修改了");
+    //         console.log(oldValue, newValue);
+    //     },
+    //     immediate: true//默认为false,初始化时,让handler调用一下.
+    // })
+</script>
+
+</html>
