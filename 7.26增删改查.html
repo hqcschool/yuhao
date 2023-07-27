@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="../yuhao/引入/vue.js"></script>
+<style>
+    table {
+        width: 700px;
+        height: 200px;
+        border-collapse: collapse;
+
+    }
+
+    td {
+        width: 200px;
+        height: 40px;
+        text-align: center;
+    }
+
+    td:last-child {
+        width: 300px;
+    }
+
+    button {
+        margin-left: 10px;
+    }
+
+    #xiugai {
+        width: 270px;
+        height: 200px;
+        background-color: aqua;
+    }
+
+    #xiugai input {
+        margin-top: 20px;
+    }
+
+    #xiugai button {
+        margin-top: 20px;
+        margin-left: 30px;
+    }
+</style>
+
+<body>
+
+    <div id="app">
+        <form action="#" v-if="show" id="xiugai">
+            <div>
+                姓名：<input type="text" name="" id="name" v-model="name">
+                <br>
+                性别：<input type="text" name="" id="sex" v-model="sex">
+                <br>
+                年龄：<input type="text" name="" id="age" v-model="age">
+                <button @click="ti">添加</button>
+                <button @click="quxiao">取消</button>
+                <button @click="gai">修改</button>
+            </div>
+        </form>
+        <button @click="tian">添加</button>
+        <table border="1px">
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>年龄</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) in str" :key="index">
+                    <td>{{item.name}}</td>
+                    <td>{{item.sex}}</td>
+                    <td>{{item.age}}</td>
+                    <td>
+                        <button @click="remove(index)">删除</button>
+                        <button @click="modify(index)">修改</button>
+                        <button @click="cha(index)">查看</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+</body>
+<script>
+    new Vue({
+        el: '#app', //id = 'app' 或者是给一个变量名，例如 vm 就可以取出
+        data: {
+            show: false,
+            name: '',
+            sex: '',
+            age: '',
+            str: [
+                {
+                    name: "张三",
+                    sex: "男",
+                    age: 18,
+                },
+                {
+                    name: "李四",
+                    sex: "男",
+                    age: 23,
+                },
+                {
+                    name: "王五",
+                    sex: "女",
+                    age: 32,
+                },
+                {
+                    name: "赵六",
+                    sex: "女",
+                    age: 20,
+                }
+            ]
+
+        },
+
+        methods: {
+            tian() {
+                this.show = true;
+            },
+            quxiao() {
+                this.show = false;
+            },
+            //删除
+            remove(index) {
+                this.str.splice(index, 1);
+            },
+            //添加
+            ti() {
+                obj = {
+                    name: $('#name').val(),
+                    sex: $('#sex').val(),
+                    age: $('#age').val()
+                }
+                this.str.push(obj);
+                this.show = false;
+            },
+            // 回显
+            modify(index) {
+                this.show = true;
+                this.index = index
+                this.name = this.str[index].name;
+                this.sex = this.str[index].sex;
+                this.age = this.str[index].age;
+            },
+            //修改
+            gai() {
+                this.str[this.index].name = this.name
+                this.str[this.index].sex = this.sex
+                this.str[this.index].age = this.age
+                this.show = false;
+            },
+            //查看
+            cha(index) {
+                this.show = true;
+                this.index = index
+                this.name = this.str[index].name;
+                this.sex = this.str[index].sex;
+                this.age = this.str[index].age;
+            }
+        }
+    })
+
+</script>
+<script src="../yuhao/引入/jquery-3.7.0.min(1).js"></script>
+
+</html>

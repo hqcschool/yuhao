@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./vue.js"></script>
+<style>
+    .calculator {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    input {
+        margin-bottom: 10px;
+    }
+
+    button {
+        padding: 5px 10px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    #resuslt {
+        margin-top: 10px;
+        font-weight: bold;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="num1" />
+        <input type="text" v-model="opt">
+
+        </input>
+        <input type="text" v-model="num2" />
+        <input type="button" value="计算" @click="fun" />
+        <br />
+        <div>
+            <p v-if="opt=='+'">结果{{num1+num2}}</p>
+        </div>
+    </div>
+
+
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            num1: 0,
+            num2: 0,
+            opt: '',
+            zhi: '',
+        },
+        methods: {
+            fun() {
+                switch (this.opt) {
+                    case "+":
+                        this.zhi = Number(this.num1) + Number(this.num2);
+                        break; 	// addition
+                    case "-":
+                        this.zhi = this.num1 - this.num2;
+                        break; 	// additi
+                    case "*":
+                        this.zhi = this.num1 * this.num2;
+                        break; 	// additi
+                    case "/":
+                        this.zhi = this.num1 / this.num2;
+                        break; 	// additi
+                }
+            }
+        }
+    });
+
+</script>
+
+</html>

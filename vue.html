@@ -6,9 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+
+</style>
 
 <body>
-    <!-- <div id="box">{{mess}}</div> -->
+    <div id="box">{{mess}}</div>
     <!-- 
     <div id="app">
         <a v-bind:href="url">Google</a>
@@ -17,12 +20,40 @@
     <!-- </div> -->
 
 
-    <div id="app">
-        <input type='text' v-model:value="val">
+    <!-- <div id="app"> 
+    <input type='text' v-model:value="val"> 
+    <button v-on:click="show">点击</button> 
+     这里也可以进行简写 
+     <button @click="show">点击</button> 
+  <a href="https://www.baidu.com/" @click="fl">baidu</a>
+    </div>-->
+    <div class="demo1" @click="showInfo1">
+        <button @click.once="showInfo1">点我提示信息</button>
+        <!-- 修饰符可以连续写 -->
+        <a href="http://www.baidu.com" @click.prevent.stop="showInfo">
+            点我提示信息
+        </a>
     </div>
+
+
 </body>
 <script src="./vue.js"></script>
 <script>
+
+    new Vue({
+        el: ".demo1",
+        methods: {
+            showInfo1() {
+                console.log(123);
+            },
+            showInfo() {
+                console.log(23);
+            }
+        },
+    });
+
+
+
     // new Vue({
     //     el: "#box",
     //     data: {
@@ -37,12 +68,65 @@
     //     },
     // });
 
-    new Vue({
-        el: "#app",
-        data: {
-            val: "ikun",
-        },
-    });
+    // new Vue({
+    //     el: "#app",
+    //     data: {
+    //         val: "ikun",
+    //     },
+    // });
+
+
+    // var vm = new Vue({
+    // el: '#app',
+    //data的第一种写法：对象式
+    //data: {
+    //    name: "123",
+    //    age: 18
+    //}
+
+    //data的第二种写法：函数式
+    //data: function () {
+    //    console.log('@@@', this) //此处的this是Vue实例对象
+    //    return {
+    //        name: '1234',
+    //        age: 18
+    //    }
+    //}
+    //data的第二种写法：函数式,一般简写
+    //     data() {
+    //         console.log('@@@', this) //此处的this是Vue实例对象
+    //         return {
+    //             name: '1234',
+    //             age: 18
+    //         }
+    //     }
+    // });
+
+
+    // var person = {
+    //     name: "张三",
+    //     sex: "男"
+    // }
+    // //通过defineProperty给person对象添加一个age属性值为19
+    // Object.defineProperty(person, "age", {
+    //     value: 19,
+    //     enumerable: true,//控制属性是否可以枚举,默认值为false
+    //     writable: true,//控制属性是否可以被修改,默认值为false
+    //     configurable: true,//控制属性是否可以被删除,默认值为false
+    // })
+    // console.log(person);
+    // console.log(Object.keys(person))
+    // new Vue({
+    //     el: "#app",
+    //     methods: {
+    //         fl(e) {
+    //             e.preventDefault();
+    //         },
+    //     },
+    // });
+
 </script>
+
+
 
 </html>
