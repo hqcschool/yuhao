@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script src="../引入/vue.js"></script>
+<script src="../引入/jquery-3.7.0.min(1).js"></script>
+<link rel="stylesheet" href="./7.28.css">
+
+<body>
+  <div class="list" id="list">
+    <div class="lists" v-for="(item,index) in arr" @dblclick="dbl(index)">
+      <img :src="item.url">
+      <h4>特卖价</h4>
+      <h2>￥{{item.price}}</h2>
+      <s>{{item.original}}</s>
+      <a>{{item.discount}}</a>
+      <span>{{item.describe}}</span>
+    </div>
+    <div class="Product" id="Product">
+      <div class="time">
+        <div class="timeo">
+          <p>特卖商品</p>
+          <span>19:</span>
+          <span>59</span>
+        </div>
+      </div>
+      <div class="peis">
+        <p>配送至<span>郑州市</span></p>
+        <a>勾选商品"<img
+            src="https://shop.vipstatic.com/v2/dist/front/biz/cart/asset/img/te5/commons/multiplechoice_selected_normal-hash-e072799d.png"
+            alt="">" 即可锁定库存20分钟,倒计时内不用担心商品被抢走~
+        </a>
+      </div>
+      <div class="cang">
+        <table border="1px">
+          <thead>
+            <tr>
+              <th style="width: 348px; height:40px;">商品</th>
+              <th style="width: 274px;">单价</th>
+              <th style="width: 160px;">数量</th>
+              <th style="width: 174px;">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item,index) in arr1" :key="index">
+              <td>
+                <input type="checkbox">
+                <img :src="item.url">
+                <span>{{item.describe}}</span>
+                <a>{{item.chi}}</a>
+              </td>
+              <td style="text-align: center;">
+                ￥{{item.price}}
+              </td>
+              <td style="text-align: center;">
+                1
+              </td>
+              <td style="text-align: center;">
+                <button @click="del(index)">删除</button>
+              </td>
+            </tr>
+          </tbody>
+
+
+        </table>
+      </div>
+      <div class="jiesuan">
+        <select name="" id="">
+          <option value="">使用优惠券</option>
+        </select>
+        <div class="jiesuan-footer">
+          <div>立即结算</div>
+          <p>请在倒计时结束前结算</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+<script>
+  new Vue({
+    el: "#list", //id = list, 生成一个Vue实例对象(实际上是一个对象)给$el"
+    data: {
+
+      arr1: [
+        {
+          url: "https://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/2023/06/01/112/1bf8276c-b334-458a-a419-9cfd2aea40ae_327x327_90.jpg",
+          describe: "【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透连衣裙女夏",
+          chi: "尺码:M",
+          price: 198,
+        },
+      ],
+      arr: [
+        {
+          url: "https://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/2023/06/01/112/1bf8276c-b334-458a-a419-9cfd2aea40ae_327x327_90.jpg",
+          price: 498,
+          original: '￥689',
+          discount: '2.9折',
+          describe: '【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透连衣裙女夏',
+          inventory: 100
+        },
+        {
+          url: "https://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/2023/03/03/31/37c0f824-d861-4225-9510-705a9e75e7d3_327x327_90.jpg",
+          price: 396,
+          original: '￥689',
+          discount: '2.2折',
+          describe: '改良汉服连衣裙女2023新款夏装复古国风渐变色印花裙子 石秋',
+          inventory: 100
+        },
+        {
+          url: "https://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/637861/2023/0503/25/7e39d965-6889-43ee-aade-87b53bcefad9_327x327_90.jpg",
+          price: 598,
+          original: '￥689',
+          discount: '2.9折',
+          describe: '【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透连衣裙女夏',
+          inventory: 100
+        },
+        {
+          url: "https://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvop/00614000/10031618/1455095642-2486064244268388352-2486064244268388354-1_327x327_90.jpg",
+          price: 234,
+          original: '￥689',
+          discount: '2.9折',
+          describe: '【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透连衣裙女夏',
+          inventory: 100
+        },
+        {
+          url: "https://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/637861/2023/0407/72/d45247c2-0ea0-45bc-b479-ac162ad893ce_327x327_90.jpg",
+          price: 827,
+          original: '￥689',
+          discount: '2.9折',
+          describe: '【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透连衣裙女夏',
+          inventory: 100
+        },
+        {
+          url: "https://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/603327/2023/0712/184/04c66c82-ce66-4dff-902f-c100cee1b171_327x327_90.jpg",
+          price: 451,
+          original: '￥689',
+          discount: '2.9折',
+          describe: '【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透连衣裙女夏',
+          inventory: 100
+        },
+        {
+          url: "https://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/2022/04/29/189/9dd46ea5-d88f-462f-83ec-4a902ce736c0_327x327_90.jpg",
+          price: 198,
+          original: '￥689',
+          discount: '2.9折',
+          describe: '【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透连衣裙女夏',
+          inventory: 100
+        },
+        {
+          url: "https://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/613792/2023/0528/9/d0512dbd-ba40-494c-a1d0-f8bfd90cb035_327x327_90.jpg",
+          price: 726,
+          original: '￥689',
+          discount: '2.9折',
+          describe: '【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透连衣裙女夏',
+          inventory: 100
+        },
+        {
+          url: "https://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/2022/06/07/182/c94178e0-93a9-48ec-98fe-6ef9e5323ace_327x327_90.jpg",
+          price: 352,
+          original: '￥689',
+          discount: '2.9折',
+          describe: '【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透连衣裙女夏',
+          inventory: 100
+        },
+        {
+          url: "https://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/613792/2023/0213/109/e846ab40-af4d-4f65-9a07-ce908e8059fe_327x327_90.jpg",
+          price: 123,
+          original: '￥689',
+          discount: '2.9折',
+          describe: '【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透连衣裙女夏',
+          inventory: 100
+        },
+      ],
+    },
+    methods: {
+      del(index) {
+        this.arr1.splice(index, 1);
+      },
+      dbl(index) {
+        let obj = {
+          url: this.arr[index].url,
+          describe: this.arr[index].describe,
+          price: this.arr[index].price,
+          chi: this.arr[index].chi
+        }
+        this.arr1.push(obj);
+      }
+    },
+  })
+</script>
+
+</html>

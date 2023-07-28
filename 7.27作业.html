@@ -61,14 +61,14 @@
             </div>
             <div>
                 <select name="" id="">
-                    <option value="">年龄</option>
+                    <option value="" v-model="nian">年龄</option>
                     <option value="">编号</option>
                 </select>
                 <select name="" id="">
                     <option value="">降序</option>
                     <option value="">升序</option>
                 </select>
-                <button>排序</button>
+                <button @click="paixu">排序</button>
             </div>
         </form>
         <table border="1px">
@@ -181,6 +181,12 @@
             // upall() {
             //     this.alls = this.str.every(item => item.state);
             // }
+
+            // 排序
+
+
+
+
         }
     })
 

@@ -1,0 +1,240 @@
+html {
+    background-color: #e2e2e2;
+  }
+
+  #list {
+    width: 1200px;
+    height: 2000px;
+    background-color: #fff;
+    margin: auto;
+  }
+
+  .lists {
+    width: 216px;
+    height: 340px;
+    float: left;
+    margin-left: 20px;
+    margin-top: 30px;
+    border: 1px solid #e2e2e3;
+  }
+
+  .lists:hover {
+    cursor: pointer;
+  }
+
+  .lists img {
+    width: 216px;
+    height: 218px;
+  }
+
+  .lists h2 {
+    display: inline;
+    font-size: 23px;
+  }
+
+  .lists s {
+    color: #999999;
+    font-size: 14px;
+  }
+
+  .lists a {
+    color: #999999;
+    font-size: 14px;
+  }
+
+  .lists span {
+    width: 200px;
+    display: block;
+    font-size: 13px;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 15px;
+  }
+
+  .lists h4 {
+    width: 44px;
+    height: 18px;
+    color: white;
+    font-weight: normal;
+    background-image: linear-gradient(270deg, #e456ff 0, #ff31a3 100%);
+    border-radius: 5px;
+    display: inline;
+    font-size: 12px;
+    margin-left: 4px;
+  }
+
+
+  .Product {
+    width: 960px;
+    height: 500px;
+    border: 1px solid #e2e2e2;
+    float: left;
+    margin-top: 80px;
+    margin-left: 115px;
+
+  }
+
+
+  .cang::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 10px;
+    /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+  }
+
+  .cang::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 10px;
+    background-color: skyblue;
+    background-image: -webkit-linear-gradient(45deg,
+        rgba(255, 255, 255, 0.2) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.2) 75%,
+        transparent 75%,
+        transparent);
+  }
+
+  .cang::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: #ededed;
+    border-radius: 10px;
+  }
+
+  .time {
+    width: 100%;
+    height: 55px;
+    border-bottom: 1px solid #e2e2e3;
+  }
+
+  .timeo {
+    width: 150px;
+    height: 55px;
+    border-bottom: 3px solid #f10f80;
+
+  }
+
+  .timeo p {
+    display: inline;
+    font-size: 18px;
+    color: #f10f80;
+    line-height: 55px;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+
+  .timeo span {
+    color: #f10f80;
+    font-size: 17px;
+    font-weight: bold;
+  }
+
+  .peis {
+    width: 100%;
+    height: 25px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+
+  .peis p {
+    margin-left: 10px;
+    font-size: 18px;
+    display: inline;
+  }
+
+  .peis span {
+    font-weight: bold;
+    margin-left: 5px;
+    border-right: 2px solid gray;
+    padding: 0 10px;
+  }
+
+  .peis a {
+    margin-left: 20px;
+    font-size: 15px;
+    color: #666666;
+  }
+
+  table {
+    border-collapse: collapse;
+    border: none;
+
+  }
+
+  .cang {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+
+  th {
+    font-size: 12px;
+    background-color: #e0e3e2;
+    text-align: center;
+  }
+
+  td {
+    height: 90px;
+  }
+
+  td input {
+    float: left;
+    margin-top: 35px;
+  }
+
+  td img {
+    width: 74px;
+    height: 74px;
+    float: left;
+  }
+
+  td span {
+    display: block;
+    font-size: 12px;
+  }
+
+  td a {
+    font-size: 12px;
+  }
+
+  .jiesuan {
+    width: 960px;
+    height: 150px;
+    border: 1px solid #e2e2e2;
+    margin-top: 100px;
+  }
+
+  .jiesuan select {
+    width: 124px;
+    height: 30px;
+    color: #f10f80;
+    border-color: #f10f80;
+    margin-top: 20px;
+    margin-left: 30px;
+  }
+.jiesuan-footer{
+  width: 100%;
+  height: 50px;
+  background-color: #f3f3f3;
+  margin-top: 49px;
+}
+
+.jiesuan-footer p{
+display: inline;
+  line-height: 50px;
+  margin-left: 500px;
+  color: black;
+}
+
+.jiesuan-footer div{
+  float: right;
+  width: 250px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  background-color: #ff31a3;
+  color: white;
+}
