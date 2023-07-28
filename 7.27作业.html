@@ -11,7 +11,6 @@
     table {
         width: 800px;
         border-collapse: collapse;
-
     }
 
     td {
@@ -39,11 +38,7 @@
 
     }
 
-    .color-0:hover {
-        background-color: orange;
-    }
-
-    .color-1:hover {
+    td:hover {
         background-color: orange;
     }
 
@@ -151,6 +146,7 @@
             remove(index) {
                 this.str.splice(index, 1);
             },
+
             //添加
             ti() {
                 obj = {
@@ -159,8 +155,8 @@
                     age: $('#age').val(),
                 }
                 this.str.push(obj);
-                this.show = false;
             },
+
             // 上移
             modify(index) {
                 if (index == 0) {
@@ -169,6 +165,7 @@
                     arr.splice(index - 1, 1, ...arr.splice(index, 1, arr[index - 1]));
                 }
             },
+
             // 下移
             cha(index) {
                 let arr = this.str;
@@ -184,7 +181,6 @@
             // upall() {
             //     this.alls = this.str.every(item => item.state);
             // }
-
         }
     })
 
