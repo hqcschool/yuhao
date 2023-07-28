@@ -161,6 +161,7 @@
                 this.str.push(obj);
                 this.show = false;
             },
+            // 上移
             modify(index) {
                 if (index == 0) {
                 } else {
@@ -168,11 +169,13 @@
                     arr.splice(index - 1, 1, ...arr.splice(index, 1, arr[index - 1]));
                 }
             },
+            // 下移
             cha(index) {
                 let arr = this.str;
                 arr.splice(index, 1, ...arr.splice(index + 1, 1, arr[index]))
             },
             // 全选
+
             // all() {
             //     for (let item of this.str) {
             //         item.state = this.alls
@@ -181,6 +184,7 @@
             // upall() {
             //     this.alls = this.str.every(item => item.state);
             // }
+
         }
     })
 
