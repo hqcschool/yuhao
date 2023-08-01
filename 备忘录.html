@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./引入/vue.js"></script>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+    }
+
+    a {
+        font-size: 14px;
+        margin-left: 15px;
+        color: #777777;
+    }
+
+    #searchAll {
+        margin-left: 90px;
+    }
+
+    #clearcompleted {
+        margin-left: 90px;
+    }
+
+    .box h1 {
+        width: 100%;
+        font-size: 100px;
+        font-weight: 100px;
+        text-align: center;
+        color: rgba(175, 47, 47, 0.15);
+        -webkit-text-rendering: optimizeLegibility;
+        -moz-text-rendering: optimizeLegibility;
+        text-rendering: optimizeLegibility
+    }
+
+    .header {
+        width: 550px;
+        height: 190px;
+        margin: auto;
+    }
+
+    #shuru {
+        position: relative;
+        margin: 0;
+        width: 100%;
+        height: 70px;
+        font-size: 24px;
+        font-family: inherit;
+        font-weight: inherit;
+        line-height: 1.4em;
+        border: 0;
+        color: inherit;
+        padding: 6px;
+        border: 1px solid #999;
+        box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        border: none;
+        text-indent: 2em;
+    }
+
+    input {
+        outline: none;
+    }
+
+    .info {
+        margin: 65px auto 0;
+        color: #bfbfbf;
+        font-size: 10px;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+        text-align: center;
+
+    }
+
+    .info p {
+        line-height: 1;
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+    }
+
+    span {
+        color: #777777;
+    }
+
+    ul li p {
+        cursor: pointer;
+        float: right;
+    }
+
+    ul li {
+        list-style: none;
+        width: 100%;
+        height: 60px;
+        line-height: 60px;
+        box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+        margin-top: 5px;
+    }
+
+    ul li input {
+        margin-left: 20px;
+    }
+
+    #bos {
+        position: relative;
+    }
+
+    #quan {
+        width: 60px;
+        height: 34px;
+        font-size: 0;
+        position: absolute;
+        top: 19px;
+        z-index: 1;
+    }
+
+    .sbz {
+        text-decoration: line-through;
+        color: #777777;
+    }
+</style>
+
+<body>
+    <div class="box" id="box">
+        <h1>todos</h1>
+        <div class="header">
+            <div id="bos">
+                <input type="checkbox" name="" id="quan" v-model="qxx" @change="qx">
+                <input type="text" name="" id="shuru" placeholder="What needs to be done?" @keyup.enter="add">
+                <div id="div">
+                    <ul id="list">
+                        <li v-for="(item,index) in str ">
+                            <input type="checkbox" v-model="item.state" @change="func">
+                            <span :class="item.state?'sbz':''"> {{item.name}}</span>
+                            <p @click="remove">❌</p>
+                        </li>
+                    </ul>
+                    <span><span id="num">{{sum}}</span>item left</span>
+                    <a href="#" id="searchAll" @click="all">All</a>
+                    <a href="#" id="searchactive" @click="wc">Active</a>
+                    <a href="#" id="completed" @click="wwc">completed</a>
+                    <a href="#" id="clearcompleted" @click="alldelect">Clear completed</a>
+                </div>
+                <footer class="info">
+                    <p>Double-click to edit a todo</p>
+                    <p>Written by Evan You</p>
+                    <p>Part of TodoMVC</p>
+                </footer>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script>
+    new Vue({
+        el: "#box",
+        data() {
+            return {
+                sum: 0,
+                str: [],
+                qxx: false,
+                selectedItems: []
+            };
+        },
+        // 本地存储
+        mounted() {
+            const storedData = localStorage.getItem("todoList");
+            if (storedData) {
+                this.str = JSON.parse(storedData);
+                this.sum = this.str.length;
+            }
+        },
+        methods: {
+            // 添加
+            add(event) {
+                if (event.target.value !== "") {
+                    this.str.push({
+                        name: event.target.value,
+                        state: false
+                    });
+                }
+                event.target.value = "";
+                this.sum = this.str.length;
+
+                // 将数据保存到本地存储
+                localStorage.setItem("todoList", JSON.stringify(this.str));
+            },
+
+            // 删除
+            remove(index) {
+                this.str.splice(index, 1);
+                this.sum = this.str.length;
+
+                // 将数据保存到本地存储
+                localStorage.setItem("todoList", JSON.stringify(this.str));
+            },
+
+            // 反选
+            func() {
+                let yhc = this.str.length;
+                this.str.filter((item) => {
+                    if (item.state) {
+                        yhc--;
+                    }
+                    if (yhc == 0) {
+                        this.qxx = true;
+                    } else {
+                        this.qxx = false;
+                    }
+                });
+                this.sum = yhc;
+
+                // 将数据保存到本地存储
+                localStorage.setItem("todoList", JSON.stringify(this.str));
+            },
+            //全部
+            all() {
+                this.str = JSON.parse(localStorage.getItem("todoList"));
+            },
+
+            // 完成
+            wc() {
+                let m = JSON.parse(localStorage.getItem("todoList"));
+                let am = m.filter((item) => {
+                    return item.state === true;
+                });
+                console.log(am);
+                this.str = am;
+            },
+            //未完成
+            wwc() {
+                let sm = JSON.parse(localStorage.getItem("todoList"));
+                let sam = sm.filter((item) => {
+                    return item.state === false;
+                });
+                console.log(sam);
+                this.str = sam;
+            },
+            // 全删
+            alldelect() {
+                this.str = this.str.filter((item) => !item.state)
+                localStorage.setItem("todoList", JSON.stringify(this.str));
+            },
+
+            // 全选
+            qx() {
+                this.qxx != this.qxx;
+                this.str.forEach((item) => {
+                    item.state = this.qxx;
+                });
+                if (this.qxx) {
+                    this.sum = 0;
+                } else {
+                    this.sum = this.str.length;
+                }
+
+                // 将数据保存到本地存储
+                localStorage.setItem("todoList", JSON.stringify(this.str));
+            }
+        }
+    });
+
+</script>
+
+</html>

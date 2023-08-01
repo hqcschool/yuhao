@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script type="text/javascript" src="../引入/vue.js"></script>
+
+    <!-- <div id="   root">
+        <h2 v-once>初始化的n值是: {{n}}</h2>
+        <h2>当前的n值是: {{n}}</h2>
+        <button @click="n++">点我n+1</button>
+    </div>
+
+    <script type="text/javascript">
+        new Vue({ el: '#root', data: { n: 1 } })
+    </script> -->
+
+
+    <!-- <div id="root">
+        <div> 你好，{{name}}</div>
+        <div v-text="name"></div>
+        <div v-text="str"></div>
+        <div v-html="str"></div>
+        <div v-html="arr"></div>
+    </div>
+    <script>    
+        new Vue({
+            el: '#root',
+            data: {
+                name: 'casd,apspkdess',
+                str: '<h1>你好啊！</h1>',
+                arr: "<a href='https://www.baidu.com'>百度</a>"
+            }
+        }) 
+      </script> -->
+
+
+    <!-- <title>v-cloak指令</title>
+
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+
+    <div id="root">
+        <h2 v-cloak>{{ name }}</h2>
+    </div>
+
+    // 够延迟5秒收到vue.js 
+
+     <script type="text/javascript">
+        console.log(1)
+        new Vue({
+            el: '#root',
+            data: { name: 'cess' }
+        })
+    </script> -->
+
+
+    <!-- <title>v-pre指令</title>
+
+        1.跳过v-pre所在节点的编译过程
+        2.可利用它跳过：没有使用指令语法、没有使用插值语法的节点，会加快编译  
+    <div id="root">
+        <h2 v-pre>Vue其实很简单</h2>
+        <h2>当前的n值是:{{n}}</h2>
+        <button @click="n++">点我n+1</button>
+    </div>
+    <script type="text/javascript">
+        new Vue({ el: '#root', data: { n: 1 } })
+    </script> -->
+
+    <!-- <script>
+        // Vue.directive(指令名, 配置对象)
+        // 或
+        // Vue.directive(指令名, 回调函数)
+
+
+        // Vue.directive('fbind', {
+        //     // 指令与元素成功绑定时（一上来）
+        //     bind(element, binding) {	// element就是DOM元素，binding就是要绑定的
+        //         element.value = binding.value
+        //     },
+        //     // 指令所在元素被插入页面时
+        //     inserted(element, binding) {
+        //         element.focus()
+        //     },
+        //     // 指令所在的模板被重新解析时
+        //     update(element, binding) {
+        //         element.value = binding.value
+        //     }
+        // })
+    </script> -->
+
+    <!-- 
+    <div id="app">
+        <p v-add10="abc">{{123}}</p>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            directives: {
+                add10(el, binding) {
+                    console.log(el, binding);
+                    el.innerHTML = binding.value * 9;
+                },
+            },
+            data: {
+                abc: "123",
+            },
+        });
+    </script> -->
+
+
+
+
+
+
+
+    <title>收集表单数据</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+    <div id="root">
+        <form @submit.prevent="demo">
+            账号：<input type="text" v-model.trim="userInfo.account"> <br /><br />
+            密码：<input type="password" v-model="userInfo.password"> <br /><br />
+            年龄：<input type="number" v-model.number="userInfo.age"> <br /><br />
+            性别：
+            男<input type="radio" name="sex" v-model="userInfo.sex" value="male">
+            女<input type="radio" name="sex" v-model="userInfo.sex" value="female"> <br /><br />
+            爱好：
+            学习<input type="checkbox" v-model="userInfo.hobby" value="study">
+            打游戏<input type="checkbox" v-model="userInfo.hobby" value="game">
+            吃饭<input type="checkbox" v-model="userInfo.hobby" value="eat">
+            <br /><br />
+            所属校区
+            <select v-model="userInfo.city">
+                <option value="">请选择校区</option>
+                <option value="beijing">北京</option>
+                <option value="shanghai">上海</option>
+                <option value="shenzhen">深圳</option>
+                <option value="chengdu">成都</option>
+            </select>
+            <br /><br />
+            其他信息：
+            <textarea v-model.lazy="userInfo.other"></textarea> <br /><br />
+            <input type="checkbox" v-model="userInfo.agree">阅读并接受
+            <a href="https://www.yuque.com/cessstudy">《用户协议》</a>
+            <button>提交</button>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+
+        new Vue({
+            el: '#root',
+            data: {
+                userInfo: {
+                    account: '',
+                    password: '',
+                    age: 18,
+                    sex: 'female',
+                    hobby: [],
+                    city: 'beijing',
+                    other: '',
+                    agree: ''
+                }
+            },
+            methods: {
+                demo() {
+                    console.log(JSON.stringify(this.userInfo))
+                }
+            }
+        })
+
+
+
+
+
+
+
+
+
+
+
+            // new Vue({
+    //     el: "#box",
+    //     data: {
+    //         sum: 0,
+    //         str: [],
+    //         qxx: false,
+    //         selectedItems: [],
+    //     },
+    //     methods: {
+    //         // 添加
+    //         add(event) {
+    //             if (event.target.value != '') {
+    //                 this.str.push({
+    //                     name: event.target.value,
+    //                     state: false,
+    //                 });
+    //             }
+    //             event.target.value = '';
+    //             // this.sum++;
+    //             this.sum = this.str.length
+    //         },
+    //         // 删除
+    //         remove(index) {
+    //             this.str.splice(index, 1);
+    //             // this.sum--;
+    //             this.sum = this.str.length
+    //         },
+    //         // 反选
+    //         func() {
+    //             let yhc = this.str.length
+    //             this.str.filter((item) => {
+    //                 if (item.state) {
+    //                     yhc--
+    //                 }
+    //                 if (yhc == 0) {
+    //                     this.qxx = true
+    //                 } else {
+    //                     this.qxx = false
+    //                 }
+    //             })
+    //             this.sum = yhc
+    //         },
+    //         // 选中
+    //         // wc(index) {
+    //         //     this.str.forEach((item) => {
+    //         //         if (item.state) {
+    //         //             this.str = []
+    //         //             this.str.push(item)
+    //         //             console.log(item);
+    //         //         }
+    //         //     })
+    //         // },
+    //         wc() {
+    //             this.selectedItems.push(this.str.filter((item) => item.state));
+    //             console.log(this.selectedItems);
+    //         },
+
+    //         // 全选
+    //         qx() {
+    //             this.qxx != this.qxx
+    //             this.str.forEach((item) => {
+    //                 item.state = this.qxx
+    //             });
+    //             if (this.qxx) {
+    //                 this.sum = 0
+    //             } else {
+    //                 this.sum = this.str.length
+    //             }
+    //         }
+    //     },
+    // })
+
+    </script>
+</body>
+
+</html>
