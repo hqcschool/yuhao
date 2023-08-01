@@ -146,8 +146,8 @@
                     </ul>
                     <span><span id="num">{{sum}}</span>item left</span>
                     <a href="#" id="searchAll" @click="all">All</a>
-                    <a href="#" id="searchactive" @click="wc">Active</a>
-                    <a href="#" id="completed" @click="wwc">completed</a>
+                    <a href="#" id="searchactive" @click="wwc">Active</a>
+                    <a href="#" id="completed" @click="wc">completed</a>
                     <a href="#" id="clearcompleted" @click="alldelect">Clear completed</a>
                 </div>
                 <footer class="info">
@@ -157,7 +157,6 @@
                 </footer>
             </div>
         </div>
-
     </div>
 </body>
 <script>
@@ -191,7 +190,6 @@
                 event.target.value = "";
                 this.sum = this.str.length;
 
-                // 将数据保存到本地存储
                 localStorage.setItem("todoList", JSON.stringify(this.str));
             },
 
@@ -199,8 +197,6 @@
             remove(index) {
                 this.str.splice(index, 1);
                 this.sum = this.str.length;
-
-                // 将数据保存到本地存储
                 localStorage.setItem("todoList", JSON.stringify(this.str));
             },
 
@@ -219,7 +215,6 @@
                 });
                 this.sum = yhc;
 
-                // 将数据保存到本地存储
                 localStorage.setItem("todoList", JSON.stringify(this.str));
             },
             //全部
@@ -236,6 +231,7 @@
                 console.log(am);
                 this.str = am;
             },
+
             //未完成
             wwc() {
                 let sm = JSON.parse(localStorage.getItem("todoList"));
@@ -245,6 +241,7 @@
                 console.log(sam);
                 this.str = sam;
             },
+
             // 全删
             alldelect() {
                 this.str = this.str.filter((item) => !item.state)
@@ -263,12 +260,10 @@
                     this.sum = this.str.length;
                 }
 
-                // 将数据保存到本地存储
                 localStorage.setItem("todoList", JSON.stringify(this.str));
             }
         }
     });
-
 </script>
 
 </html>
