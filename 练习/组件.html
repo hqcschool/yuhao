@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="../引入/vue.js"></script>
+<style>
+
+</style>
+
+<body>
+    <div id="box">
+
+    </div>
+
+    <div id="box1">
+        <std></std>
+        <std></std>
+        <std></std>
+    </div>
+
+</body>
+<script>
+    const std = Vue.extend({
+        template: `
+        <div>
+          <span>{{msg}}</span>
+          <span>{{a}}</span>       
+        </div>
+        `,
+        data() {
+            return {
+                msg: 'hello',
+                a: "vue"
+            }
+        },
+
+    })
+
+    // 全局注册组件
+    Vue.component('std', std)
+    new Vue({
+        el: '#box1',
+
+    })
+
+</script>
+
+</html>

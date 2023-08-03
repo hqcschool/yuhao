@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./引入/vue.js"></script>
+<style>
+    html {
+        background: radial-gradient(49% 160%, #22b5ff 0, #3a72fa 100%);
+    }
+
+    h1 {
+        text-align: center;
+        color: white;
+    }
+
+    .sudoku {
+        animation: changeBg .5s ease infinite;
+        width: 400px;
+        height: 400px;
+        margin: 0 auto;
+        background: url(./图/k2.png)no-repeat 0 0/400px 400px;
+        /* position: absolute; */
+    }
+
+    @keyframes changeBg {
+        0% {
+            background-image: url(./图/k1.png);
+        }
+
+        100% {
+            background-image: url(./图/k2.png);
+        }
+    }
+
+    #root {
+        width: 106px;
+        height: 100px;
+        position: relative;
+        text-align: center;
+        overflow: hidden;
+        background: url(./图/转盘小盒子北京.png) no-repeat center;
+        background-size: 100% 100%;
+
+    }
+
+    #anniu {
+        width: 106px;
+        height: 100px;
+        background: url(./图/按钮.png) no-repeat center;
+        color: #fff;
+        cursor: pointer;
+        text-align: center;
+        border-radius: 10px;
+    }
+
+
+    #anniu p {
+        color: #fff;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin: 0;
+        height: 60px;
+        margin-top: 6px;
+    }
+
+    .zhuan {
+        width: 350px;
+        height: 350px;
+        position: relative;
+        left: 25px;
+        top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-content: space-around;
+    }
+
+
+    #root p {
+        color: #708ABF;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-size: 14px;
+        margin: 0;
+        height: 60px;
+
+    }
+
+    #root img {
+        display: block;
+        height: 50px;
+        margin: 0 auto;
+        margin-top: 15px;
+    }
+
+    .on {
+        background-color: red;
+    }
+</style>
+
+<body>
+    <!-- <div class="box" id="box">
+        <h1>九宫格</h1>
+        <div class="sudoku" id="sudoku">
+            <div class="zhuan" id="zhuan">
+                <div id="root" v-for="(item, index) in items.slice(0,4)" :key="item.id"
+                    :class="index==selected?'on':''">
+                    <p><img :src="item.img"></p>
+                    <p>{{item.size}}</p>
+                </div>
+                <div id="anniu" @click="startRoll" v-if="isStart===0">
+                    <p><b style="font-size: 40px;">抽奖</b></p>
+                    <p>消耗10积分</p>
+                </div>
+                <div id="root" v-for="(item, index) in items.slice(4,8)" :key="item.id"
+                    :class="index+4==selected?'on':''">
+                    <p><img :src="item.img"></p>
+                    <p>{{item.size}}</p>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div id="box">
+        <h1>九宫格</h1>
+        <div class="sudoku" id="sudoku">
+            <div class="zhuan" id="zhuan">
+                <div id="root" v-for="(item, index) in items.slice(0,4)" :key="item.id"
+                    :class="index==selected?'on':''">
+                    <p><img :src="item.img"></p>
+                    <p>{{item.size}}</p>
+                </div>
+                <div id="anniu" @click="startRoll" v-if="isStart===0">
+                    <p><b style="font-size: 40px;">抽奖</b></p>
+                    <p>消耗10积分</p>
+                </div>
+                <div id="root" v-for="(item, index) in items.slice(4,8)" :key="item.id"
+                    :class="index+4==selected?'on':''">
+                    <p><img :src="item.img"></p>
+                    <p>{{item.size}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#box',
+        data: {
+            isStart: 0,
+            selected: -1,
+            items: [
+                { id: 1, img: './图/谢谢惠顾.png', size: '谢谢参与' },
+                { id: 2, img: './图/谢谢惠顾.png', size: '美女一个' },
+                { id: 3, img: './图/谢谢惠顾.png', size: '宝马一辆' },
+                { id: 4, img: './图/谢谢惠顾.png', size: '鲜花一蓝' },
+                { id: 5, img: './图/谢谢惠顾.png', size: '单车一辆' },
+                { id: 6, img: './图/谢谢惠顾.png', size: '靓号一个' },
+                { id: 7, img: './图/谢谢惠顾.png', size: '500红包' },
+                { id: 8, img: './图/谢谢惠顾.png', size: '鸡蛋一蓝' },
+            ]
+        },
+        methods: {
+            startRoll() {
+                if (this.isStart === 1) {
+                    return;
+                }
+                this.isStart = 1;
+                const maxRollTimes = 20; // 最大旋转次数
+                let rollTimes = 0; // 已经旋转的次数
+                const interval = setInterval(() => {
+                    rollTimes++;
+                    this.selected = rollTimes % this.items.length;
+                    if (rollTimes === maxRollTimes) {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            this.isStart = 0;
+                            // 抽奖完成后的操作，根据实际需求进行编写
+                        }, 1000);
+                    }
+                }, 100);
+            }
+        },
+    })
+</script>
+
+</html>
